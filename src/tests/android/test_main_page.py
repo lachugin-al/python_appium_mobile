@@ -9,7 +9,10 @@ class TestWelcome(Driver):
         super().__init__(driver)
 
     def test_welcome_content(self):
-        if App.element(self, MainPage.welcomeContent):
+        flag = App.is_exist(self, MainPage.welcomeContent)
+        if flag:
             App.click(self, MainPage.closeButton)
-        if App.element(self, MainPage.coupon_slider):
-            App.click(self, MainPage.coupon_slider)
+
+        flag = App.is_exist(self, MainPage.sliderIndicator)
+        if flag:
+            App.click(self, MainPage.sliderIndicator)
