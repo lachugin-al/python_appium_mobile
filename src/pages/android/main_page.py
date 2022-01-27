@@ -9,7 +9,7 @@ class MainPage(Driver):
 
     welcomeContent = (MobileBy.ID, 'ru.beru.android.qa:id/content')
     closeButton = (MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Закрыть"]')
-    coupon_slider = (MobileBy.ID, 'ru.beru.android.qa:id/slideIndicatorView')
+    sliderIndicator = (MobileBy.ID, 'ru.beru.android.qa:id/slideIndicatorView')
 
 
     def __init__(self, driver):

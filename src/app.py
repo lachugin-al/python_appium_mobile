@@ -73,7 +73,7 @@ class App(Driver):
 
     def is_exist(self, locator, expected=True, n=3, **kwargs):
         """
-        возвращает тру или фолс при проверке наличия элемента
+        возвращает True или False при проверке наличия элемента
         """
         while n > 1:
             try:
@@ -87,9 +87,7 @@ class App(Driver):
 
     def tap(self, locator, **kwargs):
         """
-        одиночное нажатие на экран
-        -> wait until display
-        -> element(s)
+        одиночное нажатие на расположение элемента
         """
         App.is_displayed(self, locator, True)
 
@@ -101,9 +99,7 @@ class App(Driver):
 
     def double_tap(self, locator, n=3, **kwargs):
         """
-        двойное нажатие на экран
-        -> wait for element until display
-        -> element(s)
+        двойное нажатие на расположение элемента
         """
         App.is_displayed(self, locator, True, n=n)
 
@@ -116,8 +112,6 @@ class App(Driver):
     def click(self, locator, n=3, **kwargs):
         """
         нажать на элемент
-        -> wait for element until display
-        -> element(s)
         """
         App.sleep(kwargs)
         App.is_displayed(self, locator, True, n=n)
@@ -141,8 +135,6 @@ class App(Driver):
     def send_keys(self, locator, text='', **kwargs):
         """
         напечатать сообщение
-        -> wait for element until display
-        -> element(s)
         """
         App.is_displayed(self, locator, True)
 
@@ -172,8 +164,6 @@ class App(Driver):
     def swipe(self, start, dest):
         """
         скролируем или свайпаем
-        -> wait for element until display - source and destination
-        -> element(s)
         """
         if type(start[1]) is not int:
             source_element = App.element(self, start)
