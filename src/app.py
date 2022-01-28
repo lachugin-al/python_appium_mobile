@@ -85,30 +85,6 @@ class App(Driver):
                 n -= 1
                 if n == 1: return False
 
-    def tap(self, locator, **kwargs):
-        """
-        одиночное нажатие на расположение элемента
-        """
-        App.is_displayed(self, locator, True)
-
-        actions = TouchAction(self.driver)
-        return {
-            'element': lambda x: actions.tap(App.element(self, locator)).perform(),
-            'elements': lambda x: actions.tap(App.elements(self, locator)[kwargs['index']]).perform()
-        }[keyword_check(kwargs)]('x')
-
-    def double_tap(self, locator, n=3, **kwargs):
-        """
-        двойное нажатие на расположение элемента
-        """
-        App.is_displayed(self, locator, True, n=n)
-
-        actions = TouchAction(self.driver)
-        return {
-            'element': lambda x: actions.tap(App.element(self, locator), count=2).perform(),
-            'elements': lambda x: actions.tap(App.elements(self, locator)[kwargs['index']], count=2).perform()
-        }[keyword_check(kwargs)]('x')
-
     def click(self, locator, n=3, **kwargs):
         """
         нажать на элемент
@@ -140,7 +116,8 @@ class App(Driver):
 
         return {
             'element': lambda text: App.element(self, locator).clear() and App.element(self, locator).send_keys(text),
-            'elements': lambda text: App.elements(self, locator)[kwargs['index']].clear() and App.elements(self, locator)[kwargs['index']].send_keys(text)
+            'elements': lambda text: App.elements(self, locator)[kwargs['index']].clear() and
+                                     App.elements(self, locator)[kwargs['index']].send_keys(text)
         }[keyword_check(kwargs)](text)
 
     def get_screen_size(self):
@@ -177,10 +154,39 @@ class App(Driver):
 
         self.driver.scroll(source_element, target_element)
 
+    def tap(self, locator, **kwargs):
+        """
+        одиночное нажатие на расположение элемента
+        """
+        App.is_displayed(self, locator, True)
+
+        actions = TouchAction(self.driver)
+        return {
+            'element': lambda x: actions.tap(App.element(self, locator)).perform(),
+            'elements': lambda x: actions.tap(App.elements(self, locator)[kwargs['index']]).perform()
+        }[keyword_check(kwargs)]('x')
+
+    def double_tap(self, locator, n=3, **kwargs):
+        """
+        двойное нажатие на расположение элемента
+        """
+        App.is_displayed(self, locator, True, n=n)
+
+        actions = TouchAction(self.driver)
+        return {
+            'element': lambda x: actions.tap(App.element(self, locator), count=2).perform(),
+            'elements': lambda x: actions.tap(App.elements(self, locator)[kwargs['index']], count=2).perform()
+        }[keyword_check(kwargs)]('x')
+
     def tap_by_coordinates(self, x, y):
         time.sleep(2)
         actions = TouchAction(self.driver)
         actions.tap(x=x, y=y).perform()
+
+    def scroll_by_coordinates(self, x1, y1, x2, y2):
+        time.sleep(2)
+        actions = TouchAction(self.driver)
+        actions.press(x=x1, y=y1).move_to(x=x2, y=y2).release().perform()
 
     def assert_text(self, locator, text, n=20, **kwargs):
         """
@@ -254,10 +260,15 @@ class App(Driver):
                     assert actual == expected_b
                 break
             except Exception as e:
-                self.logger.error(f"попытка сравнения {next(x)} - {actual} не соответствует {expected_a} или {expected_b}")
+                self.logger.error(
+                    f"попытка сравнения {next(x)} - {actual} не соответствует {expected_a} или {expected_b}")
                 time.sleep(2)
                 n -= 1
                 if n == 1: assert actual == expected_a
+
+    def deeplink(self, url):
+        # self.driver.execute_script("mobile: deepLink", {'url': 'https://market.yandex.ru/product--kholodilnik-biriusa-m134/71365156?sku=71365156&offerid=F6bZ9fh8GcseIGJ7M0bwQA', 'package': 'ru.beru.android.qa'})
+        self.driver.execute_script("mobile: deepLink", {'url': {url}, 'package': 'ru.beru.android.qa'})
 
     @staticmethod
     def assert_boolean(actual, expected=True):
