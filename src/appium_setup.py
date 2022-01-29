@@ -3,23 +3,23 @@ import unittest
 import os
 from datetime import datetime
 
-
 android_desired_caps = {
-            "app": "/Users/lachugin/IdeaProjects/appiumMRT/app/bluemarket-android.apk",
-            "automationName": "UIAutomator2",
-            "platformName": "Android",
-            "platformVersion": "11.0",
-            "deviceName": "Android Emulator",
-            "noReset": True,
-        }
+    "app": "/Users/lachugin/IdeaProjects/appiumMRT/app/bluemarket-android.apk",
+    "automationName": "UIAutomator2",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "deviceName": "Android Emulator",
+    "noReset": True,
+}
 
 ios_desired_caps = {
-            "app": "",
-            "automationName": "xcuitest",
-            "platformName": "iOS",
-            "platformVersion": "12.2",
-            "deviceName": "iPhone 8 Simulator",
-        }
+    "app": "",
+    "automationName": "xcuitest",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "deviceName": "iPhone 8 Simulator",
+}
+
 
 class Driver(unittest.TestCase):
 
@@ -44,6 +44,7 @@ class Driver(unittest.TestCase):
                     os.makedirs('screenshots')
 
                 self.driver.save_screenshot(f"screenshots/{test_name}_{now}.png")
+
 
 if __name__ == '__main__':
     unittest.main()
