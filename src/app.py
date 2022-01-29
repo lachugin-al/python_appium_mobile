@@ -17,6 +17,7 @@ class App(Driver):
 
     def __init__(self, driver):
         super().__init__(driver)
+        self.logger = None
 
     def element(self, locator, n=3):
         """
@@ -140,7 +141,7 @@ class App(Driver):
 
     def swipe(self, start, dest):
         """
-        скролируем или свайпаем
+        скролируем или свайпаем от одного элемента до другого
         """
         if type(start[1]) is not int:
             source_element = App.element(self, start)
@@ -153,6 +154,17 @@ class App(Driver):
             target_element = App.elements(self, dest[0])[int(dest[1])]
 
         self.driver.scroll(source_element, target_element)
+
+    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3):
+        self.driver.implicitly_wait(0.5)
+        for i in range(count):
+            try:
+                self.driver.find_element(*locator).is_displayed()
+                break
+            except Exception as e:
+                self.driver.swipe(start_x, start_y, end_x, end_y, duration)
+
+        self.driver.implicitly_wait(5)
 
     def tap(self, locator, **kwargs):
         """
@@ -178,15 +190,10 @@ class App(Driver):
             'elements': lambda x: actions.tap(App.elements(self, locator)[kwargs['index']], count=2).perform()
         }[keyword_check(kwargs)]('x')
 
-    def tap_by_coordinates(self, x, y):
+    def tap_x_y(self, x, y):
         time.sleep(2)
         actions = TouchAction(self.driver)
         actions.tap(x=x, y=y).perform()
-
-    def scroll_by_coordinates(self, x1, y1, x2, y2):
-        time.sleep(2)
-        actions = TouchAction(self.driver)
-        actions.press(x=x1, y=y1).move_to(x=x2, y=y2).release().perform()
 
     def assert_text(self, locator, text, n=20, **kwargs):
         """
@@ -198,18 +205,45 @@ class App(Driver):
         while n > 1:
             try:
                 if len(kwargs) == 0:
-                    assert App.element(self, locator).text == text
+                    assert App.element(self, locator).text.__contains__(text)
+                    # assert App.element(self, locator).text == text
                 else:
-                    assert App.elements(self, locator)[kwargs['index']].text == text
+                    assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
+                    # assert App.elements(self, locator)[kwargs['index']].text == text
                 break
             except Exception as e:
                 self.logger.error(f'попытка {next(x)}- {locator}')
                 time.sleep(0.5)
                 n -= 1
                 if len(kwargs) == 0:
-                    if n == 1: assert App.element(self, locator).text == text
+                    if n == 1: assert App.element(self, locator).text.__contains__(text)
+                    # if n == 1: assert App.element(self, locator).text == text
                 else:
-                    if n == 1: assert App.elements(self, locator)[kwargs['index']].text == text
+                    if n == 1: assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
+                    # if n == 1: assert App.elements(self, locator)[kwargs['index']].text == text
+
+    def assert_contains_text(self, locator, text, n=20, **kwargs):
+        """
+        сверяет полученный текст ожидаемому значению
+        """
+        App.is_displayed(self, locator, True)
+
+        x = iter(CustomCall())
+        while n > 1:
+            try:
+                if len(kwargs) == 0:
+                    assert App.element(self, locator).text.__contains__(text)
+                else:
+                    assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
+                break
+            except Exception as e:
+                self.logger.error(f'попытка {next(x)}- {locator}')
+                time.sleep(0.5)
+                n -= 1
+                if len(kwargs) == 0:
+                    if n == 1: assert App.element(self, locator).text.__contains__(text)
+                else:
+                    if n == 1: assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
 
     def assert_size(self, locator, param):
         """
@@ -226,17 +260,6 @@ class App(Driver):
             assert App.elements(self, locator).__len__() < value
         elif case in ['одинаковый', '==']:
             assert App.elements(self, locator).__len__() == value
-
-    def swipe_until(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=10):
-        self.driver.implicitly_wait(0.5)
-        for i in range(count):
-            try:
-                self.driver.find_element(*locator).is_displayed()
-                break
-            except Exception as e:
-                self.driver.swipe(start_x, start_y, end_x, end_y, duration)
-
-        self.driver.implicitly_wait(5)
 
     def assert_equal(self, actual, expected, n=5):
         x = iter(CustomCall())
@@ -265,10 +288,6 @@ class App(Driver):
                 time.sleep(2)
                 n -= 1
                 if n == 1: assert actual == expected_a
-
-    def deeplink(self, url):
-        # self.driver.execute_script("mobile: deepLink", {'url': 'https://market.yandex.ru/product--kholodilnik-biriusa-m134/71365156?sku=71365156&offerid=F6bZ9fh8GcseIGJ7M0bwQA', 'package': 'ru.beru.android.qa'})
-        self.driver.execute_script("mobile: deepLink", {'url': {url}, 'package': 'ru.beru.android.qa'})
 
     @staticmethod
     def assert_boolean(actual, expected=True):
