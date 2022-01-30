@@ -139,10 +139,11 @@ class App(Driver):
     def launch_app(self):
         self.driver.launch_app()
 
-    def swipe(self, start, dest):
+    def swipe(self, start, dest, sleep_before):
         """
         скролируем или свайпаем от одного элемента до другого
         """
+        time.sleep(sleep_before)
         if type(start[1]) is not int:
             source_element = App.element(self, start)
         else:
@@ -155,8 +156,9 @@ class App(Driver):
 
         self.driver.scroll(source_element, target_element)
 
-    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3):
-        self.driver.implicitly_wait(0.5)
+    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3, sleep_before=5):
+        time.sleep(sleep_before)
+        self.driver.implicitly_wait(1)
         for i in range(count):
             try:
                 self.driver.find_element(*locator).is_displayed()
