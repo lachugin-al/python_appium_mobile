@@ -21,8 +21,8 @@ class KMPage(Driver):
     bnplTableView = (MobileBy.ID, "ru.beru.android.qa:id/bnplTableView") # график
     firstPayment = (MobileBy.ID, "ru.beru.android.qa:id/firstPayment") # колбаска1
     secondPayment = (MobileBy.ID, "ru.beru.android.qa:id/secondPayment") # колбаска2
-    third_payment = (MobileBy.ID, "ru.beru.android.qa:id/third_payment") # колбаска3
-    firth_payment = (MobileBy.ID, "ru.beru.android.qa:id/firth_payment") # колбаска4
+    thirdPayment = (MobileBy.ID, "ru.beru.android.qa:id/third_payment") # колбаска3
+    firthPayment = (MobileBy.ID, "ru.beru.android.qa:id/firth_payment") # колбаска4
     firstDateTextView = (MobileBy.ID, "ru.beru.android.qa:id/firstDateTextView") # дата 1 платежа
     secondDateTextView = (MobileBy.ID, "ru.beru.android.qa:id/secondDateTextView") # дата 2 платежа
     thirdDateTextView = (MobileBy.ID, "ru.beru.android.qa:id/thirdDateTextView") # дата 3 платежа
@@ -47,7 +47,7 @@ class KMPage(Driver):
     offerCreditBlock = (MobileBy.ID, "ru.beru.android.qa:id/offerCreditBlock") # виджет
     cartTinkoffCreditBlockTitle = (MobileBy.ID, "ru.beru.android.qa:id/cartTinkoffCreditBlockTitle") # Кредит от Тинькофф
     cartTinkoffCreditBlockMonthPayment = (MobileBy.ID, "ru.beru.android.qa:id/cartTinkoffCreditBlockMonthPayment") # от ... ₽ / мес.
-    proceed_credit = (MobileBy.ID, "ru.beru.android.qa:id/proceed_credit") # Оформить
+    proceedCredit = (MobileBy.ID, "ru.beru.android.qa:id/proceed_credit") # Оформить
 
     # Хэддер
     pricesContainer = (MobileBy.ID, "ru.beru.android.qa:id/pricesContainer")

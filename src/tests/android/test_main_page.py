@@ -20,7 +20,7 @@ class TestMainPage(Driver):
 
 
     def test_allert(self):
-        self.test_close_welcome_content()
+        self.test_close_all_welcome_contents()
         App.click(self, MainPage.navCart)
         if App.is_exist(self, MainPage.allertTitle):
             App.assert_contains_text(self, MainPage.allertTitle, "Что-то пошло не так")

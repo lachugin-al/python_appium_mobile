@@ -11,7 +11,7 @@ android_desired_caps = {
     "platformName": "Android",
     "platformVersion": "11.0",
     "deviceName": "Android Emulator",
-    "noReset": False,
+    "noReset": True,
 }
 
 ios_desired_caps = {
