@@ -17,7 +17,7 @@ class App(Driver):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.logger = None
+        # self.logger = None
 
     def element(self, locator, n=3):
         """

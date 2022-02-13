@@ -16,7 +16,9 @@ class MainPage(Driver):
     navCatalog = (MobileBy.ID, 'ru.beru.android.qa:id/nav_catalog')
     navCart = (MobileBy.ID, 'ru.beru.android.qa:id/nav_cart')
     navProfile = (MobileBy.ID, 'ru.beru.android.qa:id/nav_profile')
-    searchT = (MobileBy.ID, 'ru.beru.android.qa:id/searchRequestView')
+    searchRequestView = (MobileBy.ID, 'ru.beru.android.qa:id/searchRequestView')
+
+    allertTitle = (MobileBy.ID, "ru.beru.android.qa:id/alertTitle") # class android.widget.TextView[@text="Что-то пошло не так"]
 
     def __init__(self, driver):
         super().__init__(driver)

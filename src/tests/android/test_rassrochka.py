@@ -4,7 +4,6 @@ from src.tests.android.test_main_page import TestMainPage
 from src.pages.android.main_page import MainPage
 from src.pages.android.km_page import KMPage
 from src.pages.android.checkouter_page import CheckouterPage
-import time
 
 
 class TestKMPage(TestMainPage):
