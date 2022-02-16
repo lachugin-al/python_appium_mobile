@@ -32,8 +32,8 @@ class KMPage(Driver):
     thirdAmountTextView = (MobileBy.ID, "ru.beru.android.qa:id/thirdAmountTextView") # сумма 3 платежа
     fourthAmountTextView = (MobileBy.ID, "ru.beru.android.qa:id/fourthAmountTextView") # сумма 4 платежа
     moreInfoTextView = (MobileBy.ID, "ru.beru.android.qa:id/moreInfoTextView") # подробнее
-    moreInfoTextViewAfterOpen = (MobileBy.XPATH,
-                                 "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView")
+    # moreInfoTextViewAfterOpen = (MobileBy.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView")
+    moreInfoTextViewAfterOpen = (MobileBy.XPATH, "//android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView")
 
     # Виджет Рассрочки
     offerInstallmentsBlock = (MobileBy.ID, "ru.beru.android.qa:id/offerInstallmentsBlock") # виджет
@@ -42,6 +42,28 @@ class KMPage(Driver):
     onePeriodTextView = (MobileBy.ID, "ru.beru.android.qa:id/onePeriodTextView") # 3 мес
     monthlyPayment = (MobileBy.ID, "ru.beru.android.qa:id/monthlyPayment") # ... ₽/мес
     installmentsOrderButton = (MobileBy.ID, "ru.beru.android.qa:id/installmentsOrderButton") # Оформить
+    internalNumberPicker = (MobileBy.ID, "ru.beru.android.qa:id/internalNumberPicker") # барабан
+    picker = (MobileBy.ID, "ru.beru.android.qa:id/picker")
+    border = (MobileBy.ID, "ru.beru.android.qa:id/border")
+    # pop-up
+    slideIndicatorView = (MobileBy.ID, "ru.beru.android.qa:id/slideIndicatorView") # слайдер
+    design_bottom_sheet = (MobileBy.ID, "ru.beru.android.qa:id/design_bottom_sheet")
+    bottomSheetContentContainer = (MobileBy.ID, "ru.beru.android.qa:id/bottomSheetContentContainer")
+    orderId = (MobileBy.ID, "ru.beru.android.qa:id/orderId") # Выберите срок рассрочки
+    periodValuesRecyclerView = (MobileBy.ID, "ru.beru.android.qa:id/periodValuesRecyclerView") # блок с периодами
+    rootContainer1 = (MobileBy.XPATH, "//android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout") # квадратики с периодом и ценой
+    rootContainer2 = (MobileBy.XPATH, "//android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout") # квадратики с периодом и ценой
+    rootContainer3 = (MobileBy.XPATH, "//android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.LinearLayout") # квадратики с периодом и ценой
+    rootContainer4 = (MobileBy.XPATH, "//android.widget.FrameLayout[4]/android.widget.FrameLayout/android.widget.LinearLayout") # квадратики с периодом и ценой
+    periodTitle1 = (MobileBy.XPATH, "//android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[1]") # 3 мес
+    periodTitle2 = (MobileBy.XPATH, "//android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[1]") # 3 мес
+    periodTitle3 = (MobileBy.XPATH, "//android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[1]") # 3 мес
+    periodTitle4 = (MobileBy.XPATH, "//android.widget.FrameLayout[4]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[1]") # 3 мес
+    periodPrice1 = (MobileBy.XPATH, "//android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[2]") # по 11111 ₽
+    periodPrice2 = (MobileBy.XPATH, "//android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[2]") # по 11111 ₽
+    periodPrice3 = (MobileBy.XPATH, "//android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[2]") # по 11111 ₽
+    periodPrice4 = (MobileBy.XPATH, "//android.widget.FrameLayout[4]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[2]") # по 11111 ₽
+    okButton = (MobileBy.ID, "ru.beru.android.qa:id/okButton") # Выбрать
 
     # Виджет Кредита
     offerCreditBlock = (MobileBy.ID, "ru.beru.android.qa:id/offerCreditBlock") # виджет

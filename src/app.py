@@ -156,7 +156,7 @@ class App(Driver):
 
         self.driver.scroll(source_element, target_element)
 
-    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3, sleep_before=5):
+    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3, sleep_before=0):
         time.sleep(sleep_before)
         self.driver.implicitly_wait(1)
         for i in range(count):
