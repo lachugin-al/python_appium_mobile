@@ -43,7 +43,7 @@ class TestKMPage(TestMainPage):
         App.is_displayed(self, KMPage.offerInstallmentsBlock)
         App.assert_text(self, KMPage.installmentsTitleTextView, "Рассрочка от Тинькофф")
         App.is_displayed(self, KMPage.internalNumberPicker)
-        App.assert_contains_text(self, KMPage.monthlyPayment, "₽")
+        App.assert_contains_text(self, KMPage.monthlyPayment, "1 389 ₽")
         App.is_displayed(self, KMPage.installmentsOrderButton)
         App.click(self, KMPage.picker)
         App.is_displayed(self, KMPage.design_bottom_sheet)
