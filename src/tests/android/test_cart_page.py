@@ -21,12 +21,43 @@ class TestCartPage(TestMainPage):
             "package": "ru.beru.android.qa"})
         time.sleep(10)
         App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
-        flag = True # "1 товар в корзине"
+        flag = App.is_exist(self, KMPage.cartMinusButton)  # есть товар в корзине
         while flag:
-            flag = App.assert_text(self, KMPage.cartButtonProgressButton, "Добавить в корзину")
-            if flag:
-                App.click(self, KMPage.productMainCartButton)
-                flag = False
-            else:
                 App.click(self, KMPage.cartMinusButton)
+                time.sleep(2)
+                flag = App.is_exist(self, KMPage.cartMinusButton)
+        App.click(self, KMPage.cartCounterButton)
+        if App.is_exist(self, MainPage.sliderIndicator):
+            App.click(self, MainPage.sliderIndicator)
         App.click(self, MainPage.navCart)
+        time.sleep(10)
+        App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
+
+        # проверяем бнпл виджет
+        App.is_displayed(self, KMPage.offerBnplBlock)
+        App.assert_contains_text(self, KMPage.bnplBlockInitSum, "сегодня")
+        App.assert_contains_text(self, KMPage.bnplBlockMonthSum, "потом, без переплат")
+        App.is_displayed(self, KMPage.proceedBnpl)
+        App.is_displayed(self, KMPage.bnplTableView)
+        App.is_displayed(self, KMPage.firstPayment)
+        App.is_displayed(self, KMPage.secondPayment)
+        App.is_displayed(self, KMPage.thirdPayment)
+        App.is_displayed(self, KMPage.firthPayment)
+        App.assert_contains_text(self, KMPage.firstDateTextView, " ")
+        App.assert_contains_text(self, KMPage.secondDateTextView, " ")
+        App.assert_contains_text(self, KMPage.thirdDateTextView, " ")
+        App.assert_contains_text(self, KMPage.fourthDateTextView, " ")
+        App.assert_contains_text(self, KMPage.firstAmountTextView, "₽")
+        App.assert_contains_text(self, KMPage.secondAmountTextView, "₽")
+        App.assert_contains_text(self, KMPage.thirdAmountTextView, "₽")
+        App.assert_contains_text(self, KMPage.fourthAmountTextView, "₽")
+        App.assert_text(self, KMPage.moreInfoTextView, "Подробнее")
+
+        # проверяем кредитный виджет
+        App.is_displayed(self, KMPage.offerCreditBlock)
+        App.assert_text(self, KMPage.cartTinkoffCreditBlockTitle, "Кредит от Тинькофф")
+        App.assert_contains_text(self, KMPage.cartTinkoffCreditBlockMonthPayment, "₽")
+        App.is_displayed(self, KMPage.proceedCredit)
+        App.assert_contains_text(self, KMPage.creditPriceView, "₽")
+
+        # TODO - проверка виджета Рассрочки
