@@ -1,10 +1,9 @@
 import time
 
 from src.app import App
-from src.tests.android.test_main_page import TestMainPage
+from src.tests.android.fintech.test_main_page import TestMainPage
 from src.pages.android.main_page import MainPage
 from src.pages.android.km_page import KMPage
-from src.pages.android.cart_page import CartPage
 
 
 class TestCartPage(TestMainPage):

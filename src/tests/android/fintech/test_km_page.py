@@ -1,7 +1,7 @@
 import time
 
 from src.app import App
-from src.tests.android.test_main_page import TestMainPage
+from src.tests.android.fintech.test_main_page import TestMainPage
 from src.pages.android.km_page import KMPage
 
 
@@ -100,3 +100,14 @@ class TestKMPage(TestMainPage):
         App.click(self, KMPage.moreInfoTextView)
         time.sleep(5)
         App.assert_contains_text(self, KMPage.moreInfoTextViewAfterOpen, "Оплата покупок частями")
+
+    def test_km_bnpl_vijet_prod(self):
+        """Тест на КМ отображение виджета БНПЛ"""
+        # self.test_close_all_welcome_contents()
+        self.driver.execute_script("mobile: deepLink", {
+            "url": "yamarket://product--umnaia-kolonka-yandex-stantsiia-lait/962050067?glfilter=14871214%3A15926273_101324536885&glfilter=27421310%3A27421370_101324536885&text=яндекс%20станция&cpc=Dcc2g1IKjocKU9FO5sHhDPheVEa1E0vufBs05T3T-MQ-mNvDcRcJfTbU2B8OqsIwMzO1SvjPV21YVdrxoDL9zCzft8NQl46ecn2SQvzGl8xFtfIbVE9sp2UrmNEDM71MW92DgH3LXZP1U1GVvCFhp3n4iEHzFeGa5fu7nhppuJjOE1XKtxm-wxJo4qA7ayfS&sku=101324536885&do-waremd5=Xd_9nRVqQLNf5ts7xGnXmA&cpa=1&nid=26992350",
+            "package": "ru.beru.android.qa"})
+        time.sleep(15)
+        # App.assert_text(self, KMPage.pricesPriceBnplTextView, "или частями")
+        App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
+        App.is_displayed(self, KMPage.offerBnplBlock)

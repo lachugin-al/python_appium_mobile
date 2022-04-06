@@ -3,9 +3,7 @@ from src.appium_setup import Driver
 
 
 class CartPage(Driver):
-    """
-    корзина
-    """
+    """Корзина"""
 
     def __init__(self, driver):
         super().__init__(driver)

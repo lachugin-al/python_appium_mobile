@@ -9,14 +9,18 @@ class TestMainPage(Driver):
         super().__init__(driver)
 
     def test_close_all_welcome_contents(self):
-        if App.is_exist(self, MainPage.welcomeContent):
+        while App.is_exist(self, MainPage.closeButton):
             App.click(self, MainPage.closeButton)
+
+        # if App.is_exist(self, MainPage.welcomeContent):
+        #     App.click(self, MainPage.closeButton)
 
         while App.is_exist(self, MainPage.sliderIndicator):
             App.click(self, MainPage.sliderIndicator)
 
         if App.is_exist(self, MainPage.cookieContainer):
-            App.click(self, MainPage.negativeButton)
+            if App.is_exist(self, MainPage.negativeButton):
+                App.click(self, MainPage.negativeButton)
 
 
     def test_allert(self):

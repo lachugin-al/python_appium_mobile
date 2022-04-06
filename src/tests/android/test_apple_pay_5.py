@@ -1,2 +1,0 @@
-# Dyson
-# https://default.exp.tst.market.yandex.ru/product--cinetic-big-ball-animal-pro-2/515571001?text=Cinetic%20Big%20Ball%20Animal%20Pro%202&cpc=DVMiDBIb3vO_87VmXLO5bpsB6c6SyK_pTdyFuyGep_U3gefvedEy4EjoFE2FGPIwMcxm1DvRW4lHPV9Bc9KXQWjxi8rgX8aqTPO4PUb-0PddJuOPyKwNRhTMW7Yx4KFuoU9lj8HfIVB0wzCfnwo_wTx9dkJt4wnPBEXryaxINyuCmsraPZoPS9wn-sXByMq0G56kOV6u2Tw%2C&sku=100868870241&do-waremd5=rPETzSaOt9-zl7vTmQEcMA&cpa=1&nid=83796

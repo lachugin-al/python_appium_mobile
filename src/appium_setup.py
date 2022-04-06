@@ -3,16 +3,14 @@ import unittest
 import os
 from datetime import datetime
 import logging
-from appium.webdriver.appium_service import AppiumService
 
 android_desired_caps = {
-    # 'app': os.path.abspath('../app/bluemarket-android.apk'),
-    "app": "/Users/lachugin/code/appiumMRT/app/bluemarket-android.apk",
+    'app': os.path.abspath('../../../market_app/bluemarket-android.apk'),
     "automationName": "UIAutomator2",
     "platformName": "Android",
     "platformVersion": "11.0",
     "deviceName": "emulator-5554",
-    "noReset": True, # сбрасываем или нет настройки приложения при запуске
+    "noReset": True, # сбрасываем или нет настройки приложения при запуске (True - не сбрасываем)
 }
 
 ios_desired_caps = {
@@ -29,10 +27,8 @@ class Driver(unittest.TestCase):
     def __init__(self, driver):
         super().__init__(driver)
         self.logger = logging.getLogger()
-        # self.appium_service = AppiumService()
 
     def setUp(self):
-        # self.appium_service.start(args=["-address", "0.0.0.0", "-p", "4723"])
         self.logger.info("Настройка драйвера и capabilities")
         url = "http://localhost:4723/wd/hub"
         self.driver = webdriver.Remote(url, android_desired_caps)
@@ -41,7 +37,6 @@ class Driver(unittest.TestCase):
     def tearDown(self):
         Driver.screenshot_on_failure(self)
         self.driver.quit()
-        # self.appium_service.stop()
 
     def screenshot_on_failure(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')

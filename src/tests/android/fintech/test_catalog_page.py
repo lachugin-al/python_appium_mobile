@@ -2,7 +2,7 @@ import time
 
 from src.app import App
 from src.pages.android.catalog_page import CatalogPage
-from src.tests.android.test_main_page import TestMainPage
+from src.tests.android.fintech.test_main_page import TestMainPage
 
 
 class TestCatalogPage(TestMainPage):
@@ -45,3 +45,24 @@ class TestCatalogPage(TestMainPage):
         App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
         App.is_displayed(self, CatalogPage.creditContainer)
         App.assert_text(self, CatalogPage.creditViewTitle, "Оплата частями")
+
+
+    def test_catalog_bnpl_prod(self):
+        """Поиск лейбла бнпл на выдаче через диплинк"""
+        self.driver.execute_script("mobile: deepLink", {
+        "url": "yamarket://catalog--umnye-kolonki/26992350/list?glfilter=7893318%3A15562112&text=яндекс%20станция&cpa=1&hid=15553892&rs=eJwzYgpgBAABcwCG&was_redir=1&rt=10&onstock=0&local-offers-first=0",
+        "package": "ru.beru.android.qa"})
+        time.sleep(15)
+        App.swipe_x_y(self, locator='', start_x=500, start_y=590, count=1)
+        App.is_displayed(self, CatalogPage.creditContainer)
+        App.assert_text(self, CatalogPage.creditViewTitle, "Оплата частями")
+
+    def test_catalog_bnpl_prod2(self):
+        """Поиск лейбла бнпл на выдаче через диплинк"""
+        self.driver.execute_script("mobile: deepLink", {
+            "url": "yamarket://catalog--umnye-kolonki/26992350/list?glfilter=7893318%3A15562112&text=яндекс%20станция&cpa=1&hid=15553892&rs=eJwzYgpgBAABcwCG&was_redir=1&rt=10&onstock=0&local-offers-first=0",
+            "package": "ru.beru.android.qa"})
+        time.sleep(15)
+        App.swipe_x_y(self, locator='', start_x=500, start_y=600, count=1)
+        App.is_displayed(self, CatalogPage.creditContainer)
+        App.assert_text(self, CatalogPage.creditViewTitle, "Не Оплата частями")

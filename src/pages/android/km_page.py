@@ -3,9 +3,7 @@ from src.appium_setup import Driver
 
 
 class KMPage(Driver):
-    """
-    карточка моделм/оффера
-    """
+    """Карточка моделм/оффера"""
 
     productSummaryTitleView = (MobileBy.ID, "ru.beru.android.qa:id/productSummaryTitleView")
 
