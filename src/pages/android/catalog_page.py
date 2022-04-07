@@ -3,9 +3,7 @@ from src.appium_setup import Driver
 
 
 class CatalogPage(Driver):
-    """
-    каталог
-    """
+    """Каталог"""
 
     # Строка поиска
     viewSearchAppBarLayoutContainer = (MobileBy.ID, 'ru.beru.android.qa:id/viewSearchAppBarLayoutContainer')
@@ -24,8 +22,7 @@ class CatalogPage(Driver):
     creditContainer = (MobileBy.ID, "ru.beru.android.qa:id/creditContainer")  # контейнер для кредита / рассрочки
     creditTitleView = (MobileBy.ID, 'ru.beru.android.qa:id/creditViewTitle')  # рассрочка
     creditViewTitle = (MobileBy.ID, "ru.beru.android.qa:id/creditViewTitle")  # можно частями / кредит
-    creditViewLayout = (
-        MobileBy.ID, "ru.beru.android.qa:id/creditViewLayout")  # блок [* ₽ / мес] для кредита / рассрочки
+    creditViewLayout = (MobileBy.ID, "ru.beru.android.qa:id/creditViewLayout")  # блок [* ₽ / мес] для кредита / рассрочки
     creditView = (MobileBy.ID, "ru.beru.android.qa:id/creditView")  # * ₽ / мес или * ₽
     creditSmallView = (MobileBy.ID, 'ru.beru.android.qa:id/creditSmallView')  # × 3 мес
 

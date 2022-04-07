@@ -2,14 +2,15 @@ from appium import webdriver
 import unittest
 import os
 from datetime import datetime
+import logging
 
 android_desired_caps = {
-    "app": "/Users/lachugin/IdeaProjects/appiumMRT/app/bluemarket-android.apk",
+    'app': os.path.abspath('../../../market_app/bluemarket-android.apk'),
     "automationName": "UIAutomator2",
     "platformName": "Android",
     "platformVersion": "11.0",
-    "deviceName": "Android Emulator",
-    "noReset": True,
+    "deviceName": "emulator-5554",
+    "noReset": True, # сбрасываем или нет настройки приложения при запуске (True - не сбрасываем)
 }
 
 ios_desired_caps = {
@@ -25,8 +26,10 @@ class Driver(unittest.TestCase):
 
     def __init__(self, driver):
         super().__init__(driver)
+        self.logger = logging.getLogger()
 
     def setUp(self):
+        self.logger.info("Настройка драйвера и capabilities")
         url = "http://localhost:4723/wd/hub"
         self.driver = webdriver.Remote(url, android_desired_caps)
         self.driver.implicitly_wait(5)
