@@ -1,18 +1,20 @@
 import time
 
 from src.app import App
+from src.appium_setup import Driver
 from src.tests.android.fintech.test_main_page import TestMainPage
 from src.pages.android.km_page import KMPage
 
 
-class TestKMPage(TestMainPage):
+class TestKMPage(Driver):
 
     def __init__(self, driver):
         super().__init__(driver)
 
     def test_km_installments_and_credit_2_vidjets_testing(self):
-        """Тест на КМ отображение 2х виджетов Рассрочка 3 или 6 мес и Кредит"""
-        # self.test_close_all_welcome_contents()
+        """
+        Тест на КМ отображение 2х виджетов Рассрочка 3 или 6 мес и Кредит
+        """
         self.driver.execute_script("mobile: deepLink", {
             "url": "yamarket://product--podushka-body-pillow-u-khollofaiber/1722620568?sku=100126176323&offerid=Wk5TKm_8jUbl48gPoZookw",
             "package": "ru.beru.android.qa"})
@@ -31,10 +33,11 @@ class TestKMPage(TestMainPage):
         App.assert_contains_text(self, KMPage.creditPriceView, "₽")
 
     def test_km_installments_baraban(self):
-        """Тест на КМ отображение виджета Рассрочки с барабаном
+        """
+        Тест на КМ отображение виджета Рассрочки с барабаном
         изменение состояний барабана и данных на компактном оффере
-        вызов поп-ап барабана"""
-        # self.test_close_all_welcome_contents()
+        вызов поп-ап барабана
+        """
         self.driver.execute_script("mobile: deepLink", {
             "url": "yamarket://product--vstraivaemaia-posudomoechnaia-mashina-samsung-dw60m9550us/71335995?sku=71335995&offerid=Cmxk2TCHAUGgSmFPyQxQAA",
             "package": "ru.beru.android.qa"})
@@ -71,8 +74,9 @@ class TestKMPage(TestMainPage):
         App.assert_contains_text(self, KMPage.monthlyPayment, "1 389 ₽")
 
     def test_km_bnpl_vijet_testing(self):
-        """Тест на КМ отображение виджета БНПЛ"""
-        # self.test_close_all_welcome_contents()
+        """
+        Тест на КМ отображение виджета БНПЛ
+        """
         self.driver.execute_script("mobile: deepLink", {
             "url": "yamarket://product--khodunki-happy-baby-smiley-v2/1721937523?sku=100126178559&offerid=AGw_pbaFwDoiRnCSTz7xeQ",
             "package": "ru.beru.android.qa"})
@@ -101,13 +105,14 @@ class TestKMPage(TestMainPage):
         time.sleep(5)
         App.assert_contains_text(self, KMPage.moreInfoTextViewAfterOpen, "Оплата покупок частями")
 
-    def test_km_bnpl_vijet_prod(self):
-        """Тест на КМ отображение виджета БНПЛ"""
-        # self.test_close_all_welcome_contents()
-        self.driver.execute_script("mobile: deepLink", {
-            "url": "yamarket://product--umnaia-kolonka-yandex-stantsiia-lait/962050067?glfilter=14871214%3A15926273_101324536885&glfilter=27421310%3A27421370_101324536885&text=яндекс%20станция&cpc=Dcc2g1IKjocKU9FO5sHhDPheVEa1E0vufBs05T3T-MQ-mNvDcRcJfTbU2B8OqsIwMzO1SvjPV21YVdrxoDL9zCzft8NQl46ecn2SQvzGl8xFtfIbVE9sp2UrmNEDM71MW92DgH3LXZP1U1GVvCFhp3n4iEHzFeGa5fu7nhppuJjOE1XKtxm-wxJo4qA7ayfS&sku=101324536885&do-waremd5=Xd_9nRVqQLNf5ts7xGnXmA&cpa=1&nid=26992350",
-            "package": "ru.beru.android.qa"})
-        time.sleep(15)
-        # App.assert_text(self, KMPage.pricesPriceBnplTextView, "или частями")
-        App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
-        App.is_displayed(self, KMPage.offerBnplBlock)
+    # def test_km_bnpl_vijet_prod(self):
+    #     """
+    #     Тест на КМ отображение виджета БНПЛ
+    #     """
+    #     self.driver.execute_script("mobile: deepLink", {
+    #         "url": "yamarket://product--umnaia-kolonka-yandex-stantsiia-lait/962050067?glfilter=14871214%3A15926273_101324536885&glfilter=27421310%3A27421370_101324536885&text=яндекс%20станция&cpc=Dcc2g1IKjocKU9FO5sHhDPheVEa1E0vufBs05T3T-MQ-mNvDcRcJfTbU2B8OqsIwMzO1SvjPV21YVdrxoDL9zCzft8NQl46ecn2SQvzGl8xFtfIbVE9sp2UrmNEDM71MW92DgH3LXZP1U1GVvCFhp3n4iEHzFeGa5fu7nhppuJjOE1XKtxm-wxJo4qA7ayfS&sku=101324536885&do-waremd5=Xd_9nRVqQLNf5ts7xGnXmA&cpa=1&nid=26992350",
+    #         "package": "ru.beru.android.qa"})
+    #     time.sleep(15)
+    #     # App.assert_text(self, KMPage.pricesPriceBnplTextView, "или частями")
+    #     App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
+    #     App.is_displayed(self, KMPage.offerBnplBlock)

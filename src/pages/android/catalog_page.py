@@ -3,7 +3,9 @@ from src.appium_setup import Driver
 
 
 class CatalogPage(Driver):
-    """Каталог"""
+    """
+    Каталог
+    """
 
     # Строка поиска
     viewSearchAppBarLayoutContainer = (MobileBy.ID, 'ru.beru.android.qa:id/viewSearchAppBarLayoutContainer')

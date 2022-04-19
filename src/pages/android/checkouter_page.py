@@ -3,7 +3,9 @@ from src.appium_setup import Driver
 
 
 class CheckouterPage(Driver):
-    """Чекаутер"""
+    """
+    Чекаутер
+    """
 
     toolbarText = (MobileBy.XPATH,
                    "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView")

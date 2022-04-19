@@ -3,7 +3,9 @@ from src.appium_setup import Driver
 
 
 class ProfilePage(Driver):
-    """Профиль"""
+    """
+    Профиль
+    """
 
     def __init__(self, driver):
         super().__init__(driver)

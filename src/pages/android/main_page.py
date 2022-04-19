@@ -3,7 +3,9 @@ from src.appium_setup import Driver
 
 
 class MainPage(Driver):
-    """Главная"""
+    """
+    Главная
+    """
 
     welcomeContent = (MobileBy.ID, 'ru.beru.android.qa:id/content')
     closeButton = (MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Закрыть"]')

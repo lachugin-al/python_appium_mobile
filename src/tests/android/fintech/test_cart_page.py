@@ -1,12 +1,13 @@
 import time
 
 from src.app import App
+from src.appium_setup import Driver
 from src.tests.android.fintech.test_main_page import TestMainPage
 from src.pages.android.main_page import MainPage
 from src.pages.android.km_page import KMPage
 
 
-class TestCartPage(TestMainPage):
+class TestCartPage(Driver):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -14,7 +15,7 @@ class TestCartPage(TestMainPage):
     def test_3_vijets_in_cart(self):
         """Проверка наличия и отображения 3х виджетов в корзине"""
 
-        # self.test_close_all_welcome_contents()
+        # self.close_all_welcome_contents()
         self.driver.execute_script("mobile: deepLink", {
             "url": "yamarket://product--cinetic-big-ball-animal-pro-2/515571001?sku=100868870241&offerid=3G7T1VT2MrMs6k59eZdmoQ",
             "package": "ru.beru.android.qa"})
@@ -22,9 +23,9 @@ class TestCartPage(TestMainPage):
         App.swipe_x_y(self, locator='', start_x=500, start_y=700, count=2)
         flag = App.is_exist(self, KMPage.cartMinusButton)  # есть товар в корзине
         while flag:
-                App.click(self, KMPage.cartMinusButton)
-                time.sleep(2)
-                flag = App.is_exist(self, KMPage.cartMinusButton)
+            App.click(self, KMPage.cartMinusButton)
+            time.sleep(2)
+            flag = App.is_exist(self, KMPage.cartMinusButton)
         App.click(self, KMPage.cartCounterButton)
         if App.is_exist(self, MainPage.sliderIndicator):
             App.click(self, MainPage.sliderIndicator)
