@@ -4,7 +4,7 @@ from src.appium_setup import Driver
 
 class ProfilePage(Driver):
     """
-    профиль
+    Профиль
     """
 
     def __init__(self, driver):

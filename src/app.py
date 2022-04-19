@@ -17,11 +17,11 @@ class App(Driver):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.logger = None
+        # self.logger = None
 
     def element(self, locator, n=3):
         """
-        элемент не найден
+        Элемент не найден
         """
         wait = WebDriverWait(self.driver, 20)
 
@@ -37,7 +37,7 @@ class App(Driver):
 
     def elements(self, locator, n=3):
         """
-        список элементов
+        Список элементов
         """
         wait = WebDriverWait(self.driver, 20)
 
@@ -53,7 +53,7 @@ class App(Driver):
 
     def is_displayed(self, locator, expected=True, n=3, **kwargs):
         """
-        проверяет наличие отображения элемента
+        Проверяет наличие отображения элемента
         """
         wait = WebDriverWait(self.driver, 20)
 
@@ -74,7 +74,7 @@ class App(Driver):
 
     def is_exist(self, locator, expected=True, n=3, **kwargs):
         """
-        возвращает True или False при проверке наличия элемента
+        Возвращает True или False при проверке наличия элемента
         """
         while n > 1:
             try:
@@ -88,7 +88,7 @@ class App(Driver):
 
     def click(self, locator, n=3, **kwargs):
         """
-        нажать на элемент
+        Нажать на элемент
         """
         App.sleep(kwargs)
         App.is_displayed(self, locator, True, n=n)
@@ -111,7 +111,7 @@ class App(Driver):
 
     def send_keys(self, locator, text='', **kwargs):
         """
-        напечатать сообщение
+        Напечатать сообщение
         """
         App.is_displayed(self, locator, True)
 
@@ -126,22 +126,31 @@ class App(Driver):
 
     def back(self):
         """
-        свернуть приложение
+        Свернуть приложение системным Back
         """
         self.driver.back()
 
     def close(self):
+        """
+        Закрыть приложение
+        """
         self.driver.close_app()
 
     def reset(self):
+        """
+        Сбросить приложение
+        """
         self.driver.reset()
 
     def launch_app(self):
+        """
+        Запустить приложение
+        """
         self.driver.launch_app()
 
     def swipe(self, start, dest, sleep_before):
         """
-        скролируем или свайпаем от одного элемента до другого
+        Скролируем или свайпаем от одного элемента до другого
         """
         time.sleep(sleep_before)
         if type(start[1]) is not int:
@@ -156,7 +165,10 @@ class App(Driver):
 
         self.driver.scroll(source_element, target_element)
 
-    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3, sleep_before=5):
+    def swipe_x_y(self, locator, start_x=100, start_y=200, end_x=0, end_y=0, duration=0, count=3, sleep_before=0):
+        """
+        Скролируем или свайпаем по координатам x y
+        """
         time.sleep(sleep_before)
         self.driver.implicitly_wait(1)
         for i in range(count):
@@ -170,7 +182,7 @@ class App(Driver):
 
     def tap(self, locator, **kwargs):
         """
-        одиночное нажатие на расположение элемента
+        Одиночное нажатие на расположение элемента
         """
         App.is_displayed(self, locator, True)
 
@@ -182,7 +194,7 @@ class App(Driver):
 
     def double_tap(self, locator, n=3, **kwargs):
         """
-        двойное нажатие на расположение элемента
+        Двойное нажатие на расположение элемента
         """
         App.is_displayed(self, locator, True, n=n)
 
@@ -193,13 +205,16 @@ class App(Driver):
         }[keyword_check(kwargs)]('x')
 
     def tap_x_y(self, x, y):
+        """
+        Нажатие по координатам x y
+        """
         time.sleep(2)
         actions = TouchAction(self.driver)
         actions.tap(x=x, y=y).perform()
 
     def assert_text(self, locator, text, n=20, **kwargs):
         """
-        сверяет полученный текст ожидаемому значению
+        Сверяет полученный текст с ожидаемым значением
         """
         App.is_displayed(self, locator, True)
 
@@ -207,26 +222,26 @@ class App(Driver):
         while n > 1:
             try:
                 if len(kwargs) == 0:
-                    assert App.element(self, locator).text.__contains__(text)
-                    # assert App.element(self, locator).text == text
+                    # assert App.element(self, locator).text.__contains__(text)
+                    assert App.element(self, locator).text == text
                 else:
-                    assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
-                    # assert App.elements(self, locator)[kwargs['index']].text == text
+                    # assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
+                    assert App.elements(self, locator)[kwargs['index']].text == text
                 break
             except Exception as e:
                 self.logger.error(f'попытка {next(x)}- {locator}')
                 time.sleep(0.5)
                 n -= 1
                 if len(kwargs) == 0:
-                    if n == 1: assert App.element(self, locator).text.__contains__(text)
-                    # if n == 1: assert App.element(self, locator).text == text
+                    # if n == 1: assert App.element(self, locator).text.__contains__(text)
+                    if n == 1: assert App.element(self, locator).text == text
                 else:
-                    if n == 1: assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
-                    # if n == 1: assert App.elements(self, locator)[kwargs['index']].text == text
+                    # if n == 1: assert App.elements(self, locator)[kwargs['index']].text.__contains__(text)
+                    if n == 1: assert App.elements(self, locator)[kwargs['index']].text == text
 
     def assert_contains_text(self, locator, text, n=20, **kwargs):
         """
-        сверяет полученный текст ожидаемому значению
+        Сверяет полученный текст с ожидаемым значением как часть сообщения
         """
         App.is_displayed(self, locator, True)
 
@@ -249,7 +264,7 @@ class App(Driver):
 
     def assert_size(self, locator, param):
         """
-        сверяет размер
+        Сверяет размер
         """
         App.is_displayed(self, locator, True, index=0)
 
@@ -264,6 +279,9 @@ class App(Driver):
             assert App.elements(self, locator).__len__() == value
 
     def assert_equal(self, actual, expected, n=5):
+        """
+        Сверяет значения
+        """
         x = iter(CustomCall())
         while n > 1:
             try:
@@ -276,6 +294,9 @@ class App(Driver):
                 if n == 1: assert actual == expected
 
     def assert_equal_ab(self, actual, expected_a, expected_b, n=5):
+        """
+        Сверяет пары значений
+        """
         x = iter(CustomCall())
         while n > 1:
             try:

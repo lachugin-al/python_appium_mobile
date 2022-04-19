@@ -3,7 +3,7 @@ from src.appium_setup import Driver
 
 class BasePage(Driver):
     """
-    базовая страница
+    Базовая страница
     """
 
     def __init__(self, driver):

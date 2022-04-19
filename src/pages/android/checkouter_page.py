@@ -4,7 +4,7 @@ from src.appium_setup import Driver
 
 class CheckouterPage(Driver):
     """
-    чекаутер
+    Чекаутер
     """
 
     toolbarText = (MobileBy.XPATH,
