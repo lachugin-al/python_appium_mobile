@@ -21,7 +21,7 @@ class TestMainPage(Driver):
             if App.is_exist(self, MainPage.negativeButton):
                 App.click(self, MainPage.negativeButton)
 
-    def test_allert(self):
+    def allert(self):
         App.click(self, MainPage.navCart)
         if App.is_exist(self, MainPage.allertTitle):
             App.assert_contains_text(self, MainPage.allertTitle, "Что-то пошло не так")

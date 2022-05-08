@@ -38,7 +38,7 @@ class Driver(unittest.TestCase):
         self.logger.info("Настройка драйвера и capabilities")
         url = "http://localhost:4723/wd/hub"
         self.driver = webdriver.Remote(url, desired_capabilities)
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
 
     def tearDown(self):
         """
