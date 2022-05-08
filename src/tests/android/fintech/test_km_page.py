@@ -73,7 +73,7 @@ class TestKMPage(Driver):
         App.swipe_x_y(self, locator='', start_x=240, start_y=1340, end_x=240, end_y=1310, count=1)
         App.assert_contains_text(self, KMPage.monthlyPayment, "1 389 ₽")
 
-    def test_km_bnpl_vijet_testing_prod(self):
+    def test_km_bnpl_vijet_prod(self):
         """
         Тест на КМ отображение виджета БНПЛ
         """
