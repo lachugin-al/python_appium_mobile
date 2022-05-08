@@ -21,7 +21,7 @@ class App(Driver):
 
     def element(self, locator, n=3):
         """
-        Элемент не найден
+        Элемент
         """
         wait = WebDriverWait(self.driver, 20)
 
